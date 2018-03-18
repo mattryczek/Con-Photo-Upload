@@ -1,0 +1,60 @@
+.upload-msg{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    color: #aaa;
+    width: 452px;
+    height: 451px;
+    margin: 50px auto 0px;
+    border: 1px solid #AAA;
+    font-size: 22px;
+}
+
+.upload-msg p{
+    text-align: center;
+}
+
+.disclaimer{
+    width: 480px; 
+    color:#646464;
+    margin:20px auto;
+    padding:0 16px;
+    text-align:center;
+    font:400 12px Roboto,Helvetica,Arial,sans-serif
+}
+
+.disclaimer a{
+    color:#009688}
+
+.description{
+    width: 480px; 
+    color:#646464; 
+    font:400 12px Roboto,Helvetica,Arial,sans-serif
+}
+
+h3{
+    color:#5a3696;
+}
+
+.btn{ 
+    background-color: #5a3696;
+}
+
+.btn:hover{ 
+    background-color: #643696;
+}
+
+/* label focus color */
+#netid:focus{
+    color: #643696;
+    border-bottom: 1px solid #643696;
+    box-shadow: 0 1px 0 0 #643696;
+}
+
+#submit:focus{
+    background-color: #643696;
+}
+
+#preview img{
+    height: 450px;
+    width: 450px;
+}

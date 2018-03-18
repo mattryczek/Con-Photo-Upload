@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base target="_top">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Con Directory Photo Upload</title>
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.css"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="cropping.css">
+
+        <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+        <script type='text/javascript' src='scripts.js'></script>
+    </head>
+
+    <body>
+        <form class="main" id="form" novalidate="novalidate" style="max-width: 480px;margin: 40px auto;">
+            <div id="forminner">
+                <div class="row">
+                    <div class="col s12">
+                        <h3 class="center-align" style="">Consultant Directory<br />Photo Upload</h3>
+                        <!--teal is 26a69a purple is 5a3696 //-->
+                    </div>
+                </div>
+
+
+                <div class="section">
+                    <div class="input-field col s12">
+                        <label for="netid">NetID</label>
+                        <input id="netid" type="text" name="NetID" class="validate" required="" aria-required="true">
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div>
+                        <h5 class="center-align" style="color:#5a3696;">Please upload a photo of your face, preferably with a neutral background</h5>
+                        <p class="center-align description">The preview below shows exactly how the image will look on the directory. <br />
+                            If it is distorted, crop it or use your <a href="https://idmapp.itcs.northwestern.edu/wcphoto/myphoto.cgi">WildCARD photo</a>.</p>
+                    </div>
+
+                    <div class="section upload-msg" id="preview">
+                        <p>Upload a file to preview</p>
+                    </div>
+
+                    <div class="row center-align">
+                        <div class="input-field col s12" id = "progress"></div>
+                    </div>
+                    
+                    <div class="row s12 file-field input-field col">
+                        <div class="btn left-align">
+                            <span>Choose A File</span>
+                            <input id="upload" type="file" style="width: 170px; height: 45px;" accept="image/jpeg">
+                        </div>
+
+                        <div class="col" id="spacer" style="width: 155px; height: 50px;"></div>
+
+                        <button class="btn" type="submit" id="submit" onclick="submitForm(); return false;" disabled>Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+
+                        <div class="file-path-wrapper" style="width: 1px; height: 1px;">
+                            <input class="file-path validate" id="path" type="text" placeholder=" ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="success" style="display:none">
+                <div style="width: 400px; height: 50px;"></div>
+                <h4 class="left-align" style="color:#5a3696;">Success!</h4>
+                <p class="description" style="font:400 15px;">Your file has been successfully uploaded.<br>You can update your directory photo at any time by returning to this form.</p><br>
+                <div class="row">
+                    <button class="waves-effect waves-light btn submit-btn" type="submit" id="submit" onclick="startOver(); return false;">Start Over</button>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            var preview = document.getElementById("preview");
+            var upload = document.getElementById("upload");
+
+            upload.addEventListener("change", function(e){
+                var file = upload.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function(e){
+                    preview.innerHTML = "";
+
+                    var img = new Image();
+                    img.src = reader.result;
+
+                    preview.appendChild(img);
+                    window.thePic = e.target.result;
+                    document.getElementById("submit").disabled = false;
+                }
+                reader.readAsDataURL(file);
+            });
+        </script>
+    </body>
+</html>
